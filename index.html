@@ -24,7 +24,7 @@
             </div>
             <div class="flex-row flex items-center justify-center">
                 <img src="./assets/coin.png" alt="">
-                <p class="text-xl pl-1 text-[#111111]">5500
+                <p id="assetsM" class="text-xl pl-1 text-[#111111]">5500
             </div>
         </div>
 
@@ -49,7 +49,7 @@
         <!-- pages  -->
         <div>
             <!-- first div donation page  -->
-            <div id="donationDiv" class="hidden">
+            <div id="donationDiv" class="">
                 <div class="container mx-auto p-4 space-y-6 flex-col justify-center items-center flex">
 
                     <!-- First Card: Flood at Noakhali -->
@@ -74,9 +74,9 @@
                                 disaster...</p>
 
 
-                            <input type="number" placeholder="Write Donation Amount"
+                            <input type="number" placeholder="Write Donation Amount" id="input1"
                                 class="input input-bordered  text-black placeholder-gray-400" />
-                            <button
+                            <button onclick="donateMoney(1)"
                                 class="btn btn-primary bg-[#b4f461] border-none text-black text-[20px] font-semibold hover:bg-purple-500">Donate
                                 Now</button>
 
@@ -107,9 +107,9 @@
                                 assist those in urgent need.</p>
 
 
-                            <input type="number" placeholder="Write Donation Amount"
+                            <input type="number" placeholder="Write Donation Amount" id="input2"
                                 class="input input-bordered  text-black placeholder-gray-400" />
-                            <button
+                            <button onclick="donateMoney(2)"
                                 class="btn btn-primary bg-[#b4f461] border-none text-black text-[20px] font-semibold hover:bg-purple-500">Donate
                                 Now</button>
 
@@ -144,9 +144,9 @@
                                 donation to support these brave individuals in their time of need.</p>
 
 
-                            <input type="number" placeholder="Write Donation Amount"
+                            <input type="number" id="input3" placeholder="Write Donation Amount"
                                 class="input input-bordered  text-black placeholder-gray-400" />
-                            <button
+                            <button onclick="donateMoney(3)"
                                 class="btn btn-primary bg-[#b4f461] border-none text-black text-[20px] font-semibold hover:bg-purple-500">Donate
                                 Now</button>
 
@@ -158,8 +158,11 @@
             </div>
 
             <!-- history div     -->
-            <div id="historyDiv" class="historyDiv">
-                sdkfsakfnsjkdfnjknfsdf
+            <div class="hidden" id="historyhide">
+                <div id="historyDiv" class=" historyDiv mx-auto container ">
+
+
+                </div>
             </div>
         </div>
 
