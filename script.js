@@ -138,3 +138,22 @@ function miniAcControl(confirmPlatform, amount) {
     dataUpdate3.innerText = parseFloat(dataUpdate3.innerText) + amount;
   }
 }
+
+////////////////////////////////////////////////
+
+function toggleHome() {
+  var toggleName = document.getElementById("toggleName");
+  console.log(toggleName.innerText);
+  if (toggleName.innerText == "Blog") {
+    document.getElementById("main").classList.add("hidden");
+    document.getElementById("home").classList.remove("hidden");
+    toggleName.innerText = "Home";
+  } else {
+    toggleName.innerText = "Blog";
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("main").classList.remove("hidden");
+  }
+  console.log("toggleHome");
+}
+
+//////////////////////////////////////////////////

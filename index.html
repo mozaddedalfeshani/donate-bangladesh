@@ -19,18 +19,20 @@
     <header class="h-[97px] bg-[#F9F7F3] pt-6">
 
         <!-- A div contains 3 button  -->
-        <div class="flex flex-row justify-around">
+        <div class=" navbar flex flex-row justify-around">
 
 
 
-            <button class="btn bg-[#B4F461] w-28 h-12 text-xl">Blog</button>
+            <button id="toggleBtn" class="btn bg-[#B4F461] w-28 h-12 text-xl" onclick="toggleHome()">
+                <span id="toggleName">Blog</span>
+            </button>
             <div class="flex-row flex items-center justify-center">
                 <img src="./assets/logo.png" class="w-{48px} h-{48px} pr-6 pl-6" alt="">
                 <p class="font-semibold text-xl text-[#111111]">Donate Bangladesh</p>
             </div>
             <div class="flex-row flex items-center justify-center">
                 <img src="./assets/coin.png" alt="">
-                <p id="assetsM" class="text-xl pl-1 text-[#111111]">5500
+                <p class="text-xl pl-1 text-[#111111]"><span id="assetsM"> 9400</span> BDT
             </div>
         </div>
 
@@ -38,7 +40,7 @@
 
     </header>
 
-    <main class="flex flex-col justify-center items-center">
+    <main class="flex flex-col justify-center items-center" id="main">
         <div id="donationModal" class="modal hidden">
             <div class="modal-box">
                 <h2 class="font-bold text-[34px] text-center">Congrats!</h2>
@@ -148,7 +150,7 @@
                             </figure>
                         </div>
                         <div class="card-body md:w-1/2">
-                            <div id="miniacc" class="badge btn text-black bg-[#1111110d] rounded-[10px]"> <img
+                            <div class="badge btn text-black bg-[#1111110d] rounded-[10px]"> <img
                                     src="./assets/coin.png"><span id="miniacc">0</span> BDT</div>
                             <h2 class="card-title text-black font-bold text-[20px]">Aid for Injured in the Quota
                                 Movement</h2>
@@ -187,6 +189,63 @@
 
 
     </main>
-    <script src="./script.js"></script>
+    <!--  -->
+    <!-- Home page design -->
+    <!--  -->
+    <div id="home" class="home hidden container mx-auto">
+        <div class="flex justify-end flex-col items-center">
+            <h1 class="my-10 text-lg md:text-4xl font-bold">Frequently Asked Questions</h1>
+            <div tabindex="0" class="collapse collapse-plus border-base-300 bg-base-100 border mb-1">
+                <div class="collapse-title text-[16px] md:text-xl font-medium">What is the Document Object Model (DOM)?
+                </div>
+                <div class="collapse-content">
+                    <p>The Document Object Model (DOM) is a programming interface that allows scripts to update the
+                        content,
+                        structure, and style of a document. It represents the document as a tree of objects, where each
+                        node
+                        corresponds to a part of the document.</p>
+                </div>
+            </div>
+            <div tabindex="0" class="collapse collapse-plus border-base-300 bg-base-100 border mb-1">
+                <div class="collapse-title text-[16px] md:text-xl font-medium">How do you select an element from the
+                    DOM?</div>
+                <div class="collapse-content">
+                    <p>You can select an element from the DOM using methods like <code>document.getElementById()</code>,
+                        <code>document.querySelector()</code>, or <code>document.getElementsByClassName()</code>.
+                    </p>
+                </div>
+            </div>
+            <div tabindex="0" class="collapse collapse-plus border-base-300 bg-base-100 border mb-1">
+                <div class="collapse-title text-[16px] md:text-xl font-medium">What is event delegation in the context
+                    of the DOM,
+                    and why is it useful?</div>
+                <div class="collapse-content">
+                    <p>Event delegation is a technique that allows you to attach a single event listener to a parent
+                        element, rather
+                        than to individual child elements. This is useful for managing events in dynamic lists,
+                        improving
+                        performance, and simplifying code.</p>
+                </div>
+            </div>
+            <div tabindex="0" class="collapse collapse-plus border-base-300 bg-base-100 border mb-1">
+                <div class="collapse-title text-[16px] md:text-xl font-medium">How do you manipulate an element's
+                    attributes and
+                    styles using the DOM?</div>
+                <div class="collapse-content">
+                    <p>You can manipulate an element's attributes using methods like <code>element.setAttribute()</code>
+                        and
+                        <code>element.getAttribute()</code>. For styles, you can modify the <code>style</code> property
+                        of the
+                        element, for example, <code>element.style.color = 'red';</code>.
+                    </p>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <script src="./script.js"></script>
 </body>
 </html>
