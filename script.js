@@ -13,8 +13,9 @@ function closeModal() {
   modal.classList.add("hidden"); // Hide modal
   modal.classList.remove("modal-open");
 }
-
-/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+// Global used //
+//////////////////////////////////////////////////////
 
 assetsMoney = document.getElementById("assetsM");
 
@@ -22,10 +23,10 @@ console.log(assetsMoney.innerHTML);
 
 var catchAssets = assetsMoney.innerHTML;
 balance = parseFloat(catchAssets);
-console.log(balance);
 
 ///////////////////////////////////
 // Function to add donation history
+///////////////////////////////////
 function historyCard(platform, donateValue) {
   const currentDate = new Date();
   const donationMessage = `
@@ -56,11 +57,10 @@ function historyCard(platform, donateValue) {
   newEntry.classList.add("justify-center");
   newEntry.classList.add("mb-4");
 
-  // Append the new donation card to the history
   historyElement.appendChild(newEntry);
 }
 
-// Function to show the "You haven't donated yet" message
+// Function to show the "You haven't donated yet" message on screen .....
 function showEmptyHistoryMessage() {
   const historyElement = document.getElementById("historyDiv");
   if (historyElement.children.length === 0) {
