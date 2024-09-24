@@ -9,6 +9,12 @@ function goToDonation() {
   historyDiv.add("hidden");
   donationDiv.remove("hidden");
   console.log(donationDiv);
+
+  colord = document.getElementById("buttondColor");
+
+  colord.classList.add("bg-[#B4F461]");
+  colorh = document.getElementById("buttonhColor");
+  colorh.classList.remove("bg-[#B4F461]");
 }
 function goToHistory() {
   console.log("goto History page");
@@ -16,6 +22,10 @@ function goToHistory() {
   historyDiv = document.getElementById("historyhide").classList;
   historyDiv.remove("hidden");
   donationDiv.add("hidden");
+  colord = document.getElementById("buttondColor");
+  colord.classList.remove("bg-[#B4F461]");
+  colorh = document.getElementById("buttonhColor");
+  colorh.classList.add("bg-[#B4F461]");
 }
 
 ///////////////////////////////////////////////////////
