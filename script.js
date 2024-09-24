@@ -6,7 +6,6 @@ function showModal() {
   modal.classList.remove("hidden");
   modal.classList.add("modal-open"); // Enable modal behavior
 }
-
 // Function to close the modal
 function closeModal() {
   const modal = document.getElementById("donationModal");
