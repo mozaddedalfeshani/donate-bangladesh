@@ -1,36 +1,5 @@
-/////////////////////////////////////////
-// control the pages donation and history //
-
-//////////////////////////////////////////////
-function goToDonation() {
-  console.log("goto donation page");
-  donationDiv = document.getElementById("donationDiv").classList;
-  historyDiv = document.getElementById("historyhide").classList;
-  historyDiv.add("hidden");
-  donationDiv.remove("hidden");
-  console.log(donationDiv);
-
-  colord = document.getElementById("buttondColor");
-
-  colord.classList.add("bg-[#B4F461]");
-  colorh = document.getElementById("buttonhColor");
-  colorh.classList.remove("bg-[#B4F461]");
-}
-function goToHistory() {
-  console.log("goto History page");
-  donationDiv = document.getElementById("donationDiv").classList;
-  historyDiv = document.getElementById("historyhide").classList;
-  historyDiv.remove("hidden");
-  donationDiv.add("hidden");
-  colord = document.getElementById("buttondColor");
-  colord.classList.remove("bg-[#B4F461]");
-  colorh = document.getElementById("buttonhColor");
-  colorh.classList.add("bg-[#B4F461]");
-}
-
 ///////////////////////////////////////////////////////
 // Function to show the modal //
-
 //////////////////////////////////////////////////////
 function showModal() {
   const modal = document.getElementById("donationModal");
@@ -47,8 +16,6 @@ function closeModal() {
 
 /////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////
-
 assetsMoney = document.getElementById("assetsM");
 
 console.log(assetsMoney.innerHTML);
@@ -56,6 +23,9 @@ console.log(assetsMoney.innerHTML);
 var catchAssets = assetsMoney.innerHTML;
 balance = parseFloat(catchAssets);
 console.log(balance);
+
+///////////////////////////////////
+// Function to add donation history
 function historyCard(platform, donateValue) {
   const currentDate = new Date();
   const donationMessage = `
@@ -67,9 +37,14 @@ function historyCard(platform, donateValue) {
     </div>
   `;
 
+  // Get the history container
   const historyElement = document.getElementById("historyDiv");
 
-  historyElement.classList.remove("hidden");
+  // Hide the "You haven't donated yet" message if it exists
+  const emptyMessage = document.getElementById("noDonationsMessage");
+  if (emptyMessage) {
+    emptyMessage.classList.add("hidden");
+  }
 
   const newEntry = document.createElement("div");
   newEntry.innerHTML = donationMessage;
@@ -81,79 +56,144 @@ function historyCard(platform, donateValue) {
   newEntry.classList.add("justify-center");
   newEntry.classList.add("mb-4");
 
-  historyElement.appendChild(newEntry); // Append the new donation card to the history
+  // Append the new donation card to the history
+  historyElement.appendChild(newEntry);
 }
 
+// Function to show the "You haven't donated yet" message
+function showEmptyHistoryMessage() {
+  const historyElement = document.getElementById("historyDiv");
+  if (historyElement.children.length === 0) {
+    const emptyMessage = document.createElement("div");
+    emptyMessage.id = "noDonationsMessage";
+    emptyMessage.innerHTML = `
+      <div class="text-center text-gray-500 py-4">
+        <p class="text-[20px]">You haven't donated yet</p>
+      </div>
+    `;
+    historyElement.appendChild(emptyMessage);
+  }
+}
+///////////////////////////////////////////////////////
+// Function to donate //
+//////////////////////////////////////////////////////
+
 function donateMoney(platform) {
-  console.log(platform);
-
   let inputValue;
+  let tempBalance;
 
-  // Determine which input to read based on the platform
-  if (platform == 1) {
-    inputValue = document.getElementById("input1").value;
-    document.getElementById("input1").value = "";
-  } else if (platform == 2) {
-    inputValue = document.getElementById("input2").value;
-    document.getElementById("input2").value = "";
-  } else {
-    inputValue = document.getElementById("input3").value;
-    document.getElementById("input3").value = "";
-  }
+  switch (platform) {
+    case 1:
+      inputValue = parseFloat(document.getElementById("input1").value);
+      document.getElementById("input1").value = "";
+      tempBalance = balance - inputValue;
 
-  // Parse the input value and check if it's a valid number
-  inputValue = parseFloat(inputValue);
-  if (isNaN(inputValue) || inputValue <= 0) {
-    alert("Please enter a valid donation amount.");
-    return;
-  }
+      if (tempBalance >= 0) {
+        miniAcControl(platform, inputValue);
+        balance = tempBalance;
+        assetsMoney.innerHTML = balance.toFixed(2);
+        showModal();
+        historyCard("Flood at Noakhali", inputValue);
+      } else {
+        alert("Insufficient balance");
+      }
+      break;
 
-  // Calculate the new temporary balance
-  const tempBalance = balance - inputValue;
+    case 2:
+      inputValue = parseFloat(document.getElementById("input2").value);
+      document.getElementById("input2").value = "";
+      tempBalance = balance - inputValue;
 
-  if (tempBalance >= 0) {
-    miniAcControl(platform, balance - tempBalance);
-    balance = tempBalance;
-    assetsMoney.innerHTML = balance.toFixed(2); // Update display and format to two decimals
-    showModal();
+      if (tempBalance >= 0) {
+        miniAcControl(platform, inputValue);
+        balance = tempBalance;
+        assetsMoney.innerHTML = balance.toFixed(2);
+        showModal();
+        historyCard("Flood Relief in Feni", inputValue);
+      } else {
+        alert("Insufficient balance");
+      }
+      break;
 
-    if (platform == 1) {
-      historyCard("Flood at Noakhali", inputValue);
-    } else if (platform == 2) {
-      historyCard("Flood Relief in Feni", inputValue);
-    } else {
-      historyCard("Aid for Injured in the Quota Movement", inputValue);
-    }
-  } else {
-    alert("Insufficient balance");
+    case 3:
+      inputValue = parseFloat(document.getElementById("input3").value);
+      document.getElementById("input3").value = ""; // Clear the input field
+      tempBalance = balance - inputValue;
+
+      if (tempBalance >= 0) {
+        miniAcControl(platform, inputValue);
+        balance = tempBalance;
+        assetsMoney.innerHTML = balance.toFixed(2);
+        showModal();
+        historyCard("Aid for Injured in the Quota Movement", inputValue);
+      } else {
+        alert("Insufficient balance");
+      }
+      break;
+
+    default:
+      alert("Invalid platform selected");
   }
 }
 
 ////////////////////////////////////////////////////
+// Function to update mini account balances
 ///////////////////////////////////////////////////
-
 function miniAcControl(confirmPlatform, amount) {
-  dataUpdate1 = document.getElementById("miniaca");
-  dataUpdate2 = document.getElementById("miniacb");
-  dataUpdate3 = document.getElementById("miniacc");
-  console.log("adlk" + dataUpdate1.innerText);
+  let dataUpdate1 = document.getElementById("miniaca");
+  let dataUpdate2 = document.getElementById("miniacb");
+  let dataUpdate3 = document.getElementById("miniacc");
+
   if (confirmPlatform == 1) {
-    temp = parseFloat(dataUpdate1.innerHTML);
-    dataUpdate1.innerText = parseFloat(dataUpdate1.innerText) + amount;
+    dataUpdate1.innerText = (
+      parseFloat(dataUpdate1.innerText) + amount
+    ).toFixed(2);
   } else if (confirmPlatform == 2) {
-    temp = parseFloat(dataUpdate2.innerHTML);
-    dataUpdate2.innerText = parseFloat(dataUpdate2.innerText) + amount;
+    dataUpdate2.innerText = (
+      parseFloat(dataUpdate2.innerText) + amount
+    ).toFixed(2);
   } else {
-    temp = parseFloat(dataUpdate3.innerHTML);
-    dataUpdate3.innerText = parseFloat(dataUpdate3.innerText) + amount;
+    dataUpdate3.innerText = (
+      parseFloat(dataUpdate3.innerText) + amount
+    ).toFixed(2);
   }
 }
 
 ////////////////////////////////////////////////
+// Page control for donation and history toggle
+////////////////////////////////////////////////
+function goToDonation() {
+  donationDiv = document.getElementById("donationDiv").classList;
+  historyDiv = document.getElementById("historyhide").classList;
+  historyDiv.add("hidden");
+  donationDiv.remove("hidden");
 
+  colord = document.getElementById("buttondColor");
+  colord.classList.add("bg-[#B4F461]");
+  colorh = document.getElementById("buttonhColor");
+  colorh.classList.remove("bg-[#B4F461]");
+}
+
+function goToHistory() {
+  donationDiv = document.getElementById("donationDiv").classList;
+  historyDiv = document.getElementById("historyhide").classList;
+  historyDiv.remove("hidden");
+  donationDiv.add("hidden");
+
+  colord = document.getElementById("buttondColor");
+  colord.classList.remove("bg-[#B4F461]");
+  colorh = document.getElementById("buttonhColor");
+  colorh.classList.add("bg-[#B4F461]");
+
+  // Show the placeholder message if no donations have been made
+  showEmptyHistoryMessage();
+}
+
+////////////////////////////////////////////////
+// Toggle between home and blog views
+////////////////////////////////////////////////
 function toggleHome() {
   var toggleName = document.getElementById("toggleName");
-  console.log(toggleName.innerText);
   if (toggleName.innerText == "Blog") {
     document.getElementById("main").classList.add("hidden");
     document.getElementById("home").classList.remove("hidden");
@@ -163,7 +203,4 @@ function toggleHome() {
     document.getElementById("home").classList.add("hidden");
     document.getElementById("main").classList.remove("hidden");
   }
-  console.log("toggleHome");
 }
-
-//////////////////////////////////////////////////
