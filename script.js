@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////
-// Function to show the modal //
+// Function to show the modal
 //////////////////////////////////////////////////////
 function showModal() {
   const modal = document.getElementById("donationModal");
@@ -56,7 +56,6 @@ function historyCard(platform, donateValue) {
   newEntry.classList.add("items-center");
   newEntry.classList.add("justify-center");
   newEntry.classList.add("mb-4");
-
   historyElement.appendChild(newEntry);
 }
 
@@ -139,6 +138,7 @@ function donateMoney(platform) {
 ////////////////////////////////////////////////////
 // Function to update mini account balances
 ///////////////////////////////////////////////////
+
 function miniAcControl(confirmPlatform, amount) {
   let dataUpdate1 = document.getElementById("miniaca");
   let dataUpdate2 = document.getElementById("miniacb");
@@ -162,6 +162,7 @@ function miniAcControl(confirmPlatform, amount) {
 ////////////////////////////////////////////////
 // Page control for donation and history toggle
 ////////////////////////////////////////////////
+
 function goToDonation() {
   donationDiv = document.getElementById("donationDiv").classList;
   historyDiv = document.getElementById("historyhide").classList;
@@ -192,6 +193,7 @@ function goToHistory() {
 ////////////////////////////////////////////////
 // Toggle between home and blog views
 ////////////////////////////////////////////////
+
 function toggleHome() {
   var toggleName = document.getElementById("toggleName");
   if (toggleName.innerText == "Blog") {
