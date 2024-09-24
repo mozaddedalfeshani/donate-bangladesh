@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <header class="h-[97px] bg-[#F9F7F3] pt-6">
+    <header class="h-[97px] bg-[#F9F7F3] pt-6 container mx-auto">
 
         <!-- A div contains 3 button  -->
         <div class=" navbar flex flex-row justify-around">
@@ -26,9 +26,9 @@
             <button id="toggleBtn" class="btn bg-[#B4F461] w-28 h-12 text-xl" onclick="toggleHome()">
                 <span id="toggleName">Blog</span>
             </button>
-            <div class="flex-row flex items-center justify-center">
-                <img src="./assets/logo.png" class="w-{48px} h-{48px} pr-6 pl-6" alt="">
-                <p class="font-semibold text-xl text-[#111111]">Donate Bangladesh</p>
+            <div class="flex-row items-center justify-center flex">
+                <img src="./assets/logo.png" class="w-{48px} h-{48px}  pr-6 pl-6" alt="">
+                <p class="font-semibold text-xl text-[#111111] hidden sm:flex">Donate Bangladesh</p>
             </div>
             <div class="flex-row flex items-center justify-center">
                 <img src="./assets/coin.png" alt="">
@@ -193,6 +193,37 @@
     <!-- Home page design -->
     <!--  -->
     <div id="home" class="home hidden container mx-auto">
+
+
+
+        <div class="container p-4 border card shadow-sm rounded-md">
+            <p class="text-center font-bold text-[24px] mb-3">Transforming Lives Together: The Impact of Your Donations
+            </p>
+
+            At Donate Bangladesh, every donation tells a story. Thanks to your generous contributions, we’ve made
+            significant
+            strides in supporting communities in need. Recently, we launched a clean water initiative in rural Kenya,
+            transforming
+            lives by providing access to safe drinking water. Meet Amina, a mother of three, whose family previously
+            relied on
+            contaminated sources. With the new water system, her children are healthier, and she can spend more time
+            working on her
+            farm instead of walking miles for water.
+
+            Transparency is at the heart of our mission. We believe you deserve to know how your donations are utilized.
+            In 2023,
+            85% of funds went directly to our programs, including education, health, and disaster relief. Our latest
+            report details
+            where every dollar has gone, reinforcing our commitment to accountability.
+
+            As we strive to expand our reach, we invite you to join us in our upcoming fundraising campaign. Together,
+            we can
+            continue to make a difference, one life at a time. Stay tuned for more stories of hope and transformation,
+            and thank you
+            for being a vital part of our journey!
+
+            Together, we can create a brighter future for those in need.
+        </div>
         <div class="flex justify-end flex-col items-center">
             <h1 class="my-10 text-lg md:text-4xl font-bold">Frequently Asked Questions</h1>
             <div tabindex="0" class="collapse collapse-plus border-base-300 bg-base-100 border mb-1">
